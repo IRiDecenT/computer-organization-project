@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 module RFile(Ra, Rb, Rw, Di, WE, busA, busB, clk);
 parameter n = 32;
 input clk;
@@ -23,8 +24,9 @@ initial
 //             $display("[DEBUG] write %h to reg%h", busW, Rw);
 //         end
 //     end
-always @ (*)
+always @ (posedge clk)
     begin
+        #10
         busA <= mem[Ra];
         busB <= mem[Rb];
         // if (WE == 1)begin
@@ -32,7 +34,7 @@ always @ (*)
         //     $display("[DEBUG] write %h to reg%h", Di, Rw);
         // end
     end
-// 实现寄存器前半个周期读,后半个周期写的问题
+
 always @ (negedge clk) begin
         if (WE == 1)begin
             mem[Rw] <= Di;

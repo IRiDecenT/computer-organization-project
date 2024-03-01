@@ -1,13 +1,13 @@
 `include "/Users/yr/code/computer-organization/computer-organization-project/pipeline-cpu/user/src/ALU.v"
 `include "/Users/yr/code/computer-organization/computer-organization-project/pipeline-cpu/user/src/ExtendByOp.v"
 `include "/Users/yr/code/computer-organization/computer-organization-project/pipeline-cpu/user/src/ALUctr.v"
-module ExecUnit(B, busA, busB,imm16, func, Extop,
+module ExecUnit(B, busA, busB,imm16, func, ExtOp,
             ALUSrc, ALUop, Rtype, Btarg, Zero, Overflow, ALUout);
     input[29:0] B;
     input[31:0] busA, busB;
     input[15:0] imm16;
     input[5:0] func;
-    input Extop, ALUSrc;
+    input ExtOp, ALUSrc;
     input[2:0] ALUop;
     input Rtype;
     output reg[29:0] Btarg;
@@ -29,14 +29,13 @@ module ExecUnit(B, busA, busB,imm16, func, Extop,
 
     reg[31:0] rhs;
     reg[2:0] ctr;
-    wire [31:0] 	Result;
     wire         	Zero;
     wire         	Overflow;
     ALU u_ALU(
         .A        	( busA      ),
         .B        	( rhs       ),
         .ALUctr   	( ctr       ),
-        .Result   	( Result    ),
+        .Result   	( ALUout    ),
         .Zero     	( Zero      ),
         .Overflow 	( Overflow  )
     );

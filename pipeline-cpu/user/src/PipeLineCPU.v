@@ -68,12 +68,13 @@ module PipeLineCPU(input clk);
     wire MemtoReg_out_Mem, RegWr_out_Mem;
 
 
-    initial begin
-        nextAddr = 0;
-    end
+    // initial begin
+    //     nextAddr = 0;
+    // end
     PC u_PC(
            .clk      	( clk       ),
-           .nextAddr 	( (Zero_out && Branch_out_EX || Jump_out_EX)? (Branch_out_EX ? Btarg_out : Jtarg_out) : B ),
+           //.nextAddr 	( (Zero_out && Branch_out_EX || Jump_out_EX)? (Branch_out_EX ? Btarg_out : Jtarg_out) : B ),
+           .nextAddr 	( B ),
            .curAddr  	( curAddr   )
        );
 
@@ -174,7 +175,7 @@ module PipeLineCPU(input clk);
                  .busB(busB_out),
                  .imm16(imm16_out),
                  .func(func_out),
-                 .Extop(ExtOp_out_ID),
+                 .ExtOp(ExtOp_out_ID),
                  .ALUSrc(ALUSrc_out_ID),
                  .ALUop( ALUOp_out_ID),
                  .Rtype( rtype_out_ID),
@@ -215,6 +216,7 @@ module PipeLineCPU(input clk);
     // outports wire
     wire [31:0] 	Do;
     Mem u_Mem(
+            .clk  	( clk           ),
             .RA    	( Addr_out     ),
             .WA    	( Addr_out     ),
             .Di    	( Di_out     ),

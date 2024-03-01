@@ -5,6 +5,10 @@ module IUnit(
     output reg[3:0] J,
     output[31:0] instruction
     );
+    initial begin
+        B = 0;
+        J = 0;
+    end
 
 always @(PC) begin
     B = PC + 1;
