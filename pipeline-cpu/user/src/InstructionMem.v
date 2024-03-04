@@ -3,7 +3,7 @@ module InstructionMem(
     output reg [31:0] InsData
     );
 
-    reg [7:0] rom[511:0];
+    reg [7:0] rom[1023:0];
 
     initial begin
         $readmemh("/Users/yr/code/computer-organization/computer-organization-project/pipeline-cpu/user/data/Instruction.txt", rom);

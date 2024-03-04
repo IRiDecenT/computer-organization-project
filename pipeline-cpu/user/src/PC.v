@@ -8,7 +8,12 @@ module PC(
         curAddr <= 0;
     end
     always @(negedge clk) begin
-        curAddr = nextAddr;
+        if(curAddr > 4)begin
+            curAddr = nextAddr;
+        end
+        else begin
+            curAddr = curAddr + 1;
+        end
         #20 $display("PC: %d", curAddr);
     end
 endmodule

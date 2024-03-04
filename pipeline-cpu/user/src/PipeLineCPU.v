@@ -73,8 +73,8 @@ module PipeLineCPU(input clk);
     // end
     PC u_PC(
            .clk      	( clk       ),
-           //.nextAddr 	( (Zero_out && Branch_out_EX || Jump_out_EX)? (Branch_out_EX ? Btarg_out : Jtarg_out) : B ),
-           .nextAddr 	( B ),
+           .nextAddr 	( ((Zero_out && Branch_out_EX) || Jump_out_EX)? (Branch_out_EX ? Btarg_out : Jtarg_out) : B ),
+           //.nextAddr 	( B ),
            .curAddr  	( curAddr   )
        );
 

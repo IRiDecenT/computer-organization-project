@@ -41,7 +41,7 @@ PipeLineCPU u_PipeLineCPU(
 initial begin
     $dumpfile("wave.vcd");
     $dumpvars(0, testbench);
-    #50000 $finish;
+    #100000 $finish;
 end
 
 endmodule  //TOP

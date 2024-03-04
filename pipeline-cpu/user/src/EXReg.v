@@ -19,6 +19,11 @@ module EXReg(clk, Btarg, Jtarg, Zero, Overflow,
     // 控制信号
     output reg MemWr_out, Branch_out, Jump_out, MemtoReg_out, RegWr_out;
 
+    initial begin
+        Jump_out <= 0;
+        Branch_out <= 0;
+    end
+
     always @(negedge clk) begin
         Btarg_out <= Btarg;
         Jtarg_out <= Jtarg;
